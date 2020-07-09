@@ -15,18 +15,20 @@ function displayToPage(){
         });
     } 
 // * displays the functions that we are calling
-function displayCocktails() {
-    // event.preventDefault()
-    // var cocktailSearch = $("#search-bar").val() I dont know the id of the search bar yet
-    var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=vodka`
+function displayCocktails(event) {
+    event.preventDefault()
+     var cocktailSearch = $("#search-bar-drinks").val() 
+    var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailSearch}`
     //get the ajax call for the ui
     $.ajax({
         url: cocktailURL,
         method: "GET"
     }).then(function (response) {
         results = response.drinks;
-        for (var i = 0; i < results.length; i++){
-        }
+        console.log(results)
+        // for (var i = 0; i < results.length; i++){
+           
+        // }
         // ! create a div
         // ! Do we want each drink to be in its own Card?
         // ! create a list of the different drinks
@@ -37,5 +39,9 @@ function displayCocktails() {
     })
 }
 
-displayCocktails()
-// $("#search-button").on("click", displayCocktails) idk what the search button id looks like yet
+// // <<<<<<< cocktail-search
+// $("#search-button-drinks").on("click", displayCocktails)
+// =======
+// displayCocktails()
+// // $("#search-button").on("click", displayCocktails) idk what the search button id looks like yet
+// >>>>>>> master
