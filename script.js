@@ -12,7 +12,5 @@ function displayToPage(){
             method:"GET"
         }).then(function(response) {
             console.log(response);
-
         });
-
     } 
