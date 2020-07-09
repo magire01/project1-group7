@@ -1,23 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<html>
+    <head>
+        <title>Title</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+    </head>
+    <body>
+        <div class="uk-grid">
+            <h1>Dang, I'm Hungry!</h1>
+        </div>
+        <div class="uk-grid">
+            <div class="uk-card">
+                <form>Search Ingredients:
+                    <input id="search-bar"></input>
+                    <button id="search-button">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="uk-grid">
+            <card id="search-results">
+               <p> Search results go here </p>
+            </card>
+        </div>
+        <div class="uk-grid">
+            <card id="recipe-content">
+                <p>Recipe goes here</p>
+            </card>
+        </div>
+        <div class="uk-grid">
+            <card id="drink-content">
+                <p>Drink info goes here</p>
+            </card>
+        </div>
 
-    <h1>LETS GO GROUP SEVEN!!!</h1>
-
-    <div id ="testingDiv"></div>
-
-
-
-    <!--Jquery links-->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <!---Code for our javaScipt-->
-    <script src = "script.js"></script>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+    </body>
 </html>
