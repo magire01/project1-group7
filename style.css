@@ -1,5 +1,9 @@
+body {
+    margin: auto;
+}
+
 h1{
-    color: rgb(0, 255, 42);
+    text-align: center;
 }
 
 #testingDiv{
