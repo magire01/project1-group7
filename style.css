@@ -1,16 +1,7 @@
-<<<<<<< HEAD
-body {
-    margin: auto;
-}
-
-h1{
-    text-align: center;
-=======
 .header{
     background-color: #66CDAA;
     color: white;
     padding: 2%;
->>>>>>> 1769844077af9b52f8cc80a79ca1cc317d744c9a
 }
 
 .header h1{
