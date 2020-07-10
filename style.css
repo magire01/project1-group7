@@ -1,11 +1,69 @@
+<<<<<<< HEAD
 body {
     margin: auto;
 }
 
 h1{
     text-align: center;
+=======
+.header{
+    background-color: #66CDAA;
+    color: white;
+    padding: 2%;
+>>>>>>> 1769844077af9b52f8cc80a79ca1cc317d744c9a
 }
 
-#testingDiv{
-    color: salmon;
+.header h1{
+    margin: 0 auto;
+    color: white;
 }
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+  
+  .searchTerm {
+    width: 100%;
+    border: 3px solid #66cdaa;
+    border-right: none;
+    padding: 15px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: black;
+  }
+  
+  .searchTerm:focus{
+    color: black;
+  }
+  
+  .searchButton {
+    width: 40px;
+    height: 56px;
+    border: 1px solid #66cdaa;
+    background: #66cdaa;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  /*Resize the wrap to see the search bar change!*/
+  .wrap{
+    width: 30%;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .wrap-cocktail{
+    width: 30%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
