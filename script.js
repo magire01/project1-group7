@@ -5,7 +5,9 @@
 // $("#testingDiv").append(testing)
 
 
-
+var cocktailSearchValue = $("#search-bar-drinks").val();
+var cocktailSearchBtn = $("#search-button-drinks");
+var cocktailSearchResults = $("#drinks-results");
 
 
 // * displays the functions that we are calling
@@ -21,19 +23,46 @@ function displayRecipes(){
     });
 }
 
-function displayCocktails() {
+
+//CocktailDB Query Builder
+function buildQueryCocktails(cocktailIngredient) {
+    var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailIngredient}`
+    console.log(cocktailURL);
+    return cocktailURL;
+}
+
+//CocktailDB AJAX Call
+function displayCocktails(cocktailIngredient) {
     // event.preventDefault()
     //  var cocktailSearch = $("#search-bar-drinks").val() 
-    var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=vodka`
+    cocktailURL = buildQueryCocktails(cocktailIngredient);
     //get the ajax call for the ui
     $.ajax({
         url: cocktailURL,
         method: "GET"
     }).then(function (response) {
         console.log(response);
+
     })
 }
 
-displayRecipes();
-displayCocktails();
+//CocktailDB Search Button
+cocktailSearchBtn.on("click", function(event) {
+    event.preventDefault();
+
+    var cocktailIngredient = cocktailSearchValue;
+
+    displayCocktails(cocktailIngredient);
+
+    console.log("Drink Button Test");
+});
+
+//CocktailDB Generate Search Results
+
+function generateCocktailResults() {
+    
+}
+
+// displayRecipes();
+
 
