@@ -1,11 +1,17 @@
-// $("#search-button").on("click", function(event){
-//     event.preventDefault
-//     var ingredient1 = $("search-bar").val();
-//     console.log(ingredient1)
-// })
+$("#search-button-recipe").on("click", function (event) {
 
-function displayToPage(){
-        var apiURL = "https://api.spoonacular.com/food/products/search?query=" + ingredient1 + "&apiKey=2c42667b7c2a405bbf07446e5d8a2887";
+    event.preventDefault();
+
+    var ingredient1 = $("#search-bar-recipe").val();
+
+    console.log(ingredient1)
+
+    displayToPage(ingredient1)
+
+})
+
+function displayToPage(ingredient){
+        var apiURL = "https://api.spoonacular.com/food/products/search?query=" + ingredient + "&apiKey=2c42667b7c2a405bbf07446e5d8a2887";
 
         $.ajax({
             url: apiURL,
@@ -13,6 +19,7 @@ function displayToPage(){
         }).then(function(response) {
             console.log(response);
         });
+        
     } 
 // * displays the functions that we are calling
 function displayCocktails() {
