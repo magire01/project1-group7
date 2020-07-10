@@ -1,26 +1,43 @@
-// var testing = "testing the Jquery";
+$("#search-button-recipe").on("click", function (event) {
 
-// console.log(testing);
+    event.preventDefault();
 
-// $("#testingDiv").append(testing)
+    var ingredient1 = $("#search-bar-recipe").val();
+
+    displayToPage(ingredient1)
+})
+
+$(document).on("click", ".newRecipes", function (event){
+
+    var recipe =$(this)[0].innerHTML;
+
+    console.log(recipe)
+
+})
 
 
 
+function displayToPage(ingredient){
+    
+        var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=124a6ebafffa4ec9a8b75c752871ee40";
 
+        $.ajax({
+            url: apiURL,
+            method:"GET"
+        }).then(function(response) {
 
-// * displays the functions that we are calling
+            console.log(response)
+            
+            for (i = 0; i < 5; i++){
 
-function displayRecipes(){
-    var ingredient1 = "eggs"
-    var apiURL = "https://api.spoonacular.com/food/products/search?query=" + ingredient1 + "&apiKey=2c42667b7c2a405bbf07446e5d8a2887";
-    $.ajax({
-        url: apiURL,
-        method:"GET"
-    }).then(function(response) {
-        console.log(response);
-    });
-}
+                var recipeBtn = $("<button class = newRecipes>").text(response[i].title);
 
+                $("#search-results-recipe").append(recipeBtn)
+
+            }
+        });
+        
+    } 
 function displayCocktails() {
     // event.preventDefault()
     //  var cocktailSearch = $("#search-bar-drinks").val() 
