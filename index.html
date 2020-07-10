@@ -1,67 +1,67 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Title</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/uikit.min.css" />
-        <script src="js/uikit.min.js"></script>
-        <script src="js/uikit-icons.min.js"></script>
-        <script src="https://use.fontawesome.com/13ed07a92f.js"></script>
-    </head>
-    <body>
-        <div class="uk-grid">
-            <h1>Dang, I'm Hungry!</h1>
+
+<head>
+    <title>Dang, I'm Hungry!</title>
+    <link rel="shortcut icon" type="image/jpg" href="images/favicon.ico" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+    <script src="https://use.fontawesome.com/13ed07a92f.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="uk-grid header">
+        <h1>Dang, I'm Hungry!</h1>
+    </div>
+
+    <div class="wrap">
+        <div class="search">
+            <input id="search-bar-recipe" type="text" class="searchTerm"
+                placeholder="Please Enter Your Food Ingredients!">
+            <button id="search-button-recipe" type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
         </div>
         <div class="uk-grid">
-            <div class="uk-card">
-                <form>Search Ingredients:
-                    <input id="search-bar-recipe"></input>
-                    <button id="search-button-recipe">Search</button>
-                </form>
-            </div>
+            <card id="search-results-recipe"></card>
         </div>
-        <div class="uk-grid">
-            <card id="search-results-recipe">
-               <p> Search results go here </p>
-            </card>
-        </div>
-        
         <div class="uk-grid">
             <card id="recipe-content">
-                <p>Recipe goes here</p>
             </card>
         </div>
-        </div class="uk-grid">
-        <div class="uk-card">
-            <form>Search Drink Ingredients:
-                <input id="search-bar-drinks"></input>
-                <button id="search-button-drinks">Find a Recipe</button>
-            </form>
-           </div>
+ </div>
+
+    <div class="wrap-cocktail">
+        <div class="search">
+            <input id="search-bar-drinks" type="text" class="searchTerm"
+                placeholder="Please Enter Your Drink Ingredients!">
+            <button id="search-button-drinks" type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
         </div>
-        <div>
         <div class="uk-grid">
-            <div class="card-header">
-                <strong>
-                    <i class="fa fa-glass" aria-hidden="true"></i>
-                    Drink Results
-                </strong>
+            <card id="search-results-drink"></card>
+        </div>
             </div>
         </div>
-        <div class="uk-grid">
-            <card id="drinks-results">
-                <p>Drink info goes here</p>
-            </card>
-        </div>
-        <div class="uk-grid">
-            <card id="drinks-content-div">
-                <p>Selected cocktail to make</p>
-            </card>
-        </div>
+      </div>
+ <div class="uk-grid">
+        <card id="drinks-content">
+        </card>
     </div>
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="script.js"></script>
-    </body>
+
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
 </html>
