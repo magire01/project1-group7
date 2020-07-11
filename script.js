@@ -55,6 +55,7 @@ $(document).on("click", ".newDrinks", function (event){
     var drink = $(this)[0].innerHTML;
     //Button Name test
     console.log(drink);
+    displayCocktailRecipe();
 })
 
 //AJAX function for TheCocktailDB API (Input is dummy variable to pass "ingredientDrinks")
@@ -74,26 +75,38 @@ function displayCocktails(input) {
             var drinksCard = $("<card>");
             drinksCard.attr("class", "uk-card uk-card-default uk-card-body uk-width-1-5");
             drinksCard.attr("id", "drinks-card");
-            //Append Cocktail Search Result card
+            //Append Cocktail Search Result card to "#search-results-drink" div
             $("#search-results-drink").append(drinksCard);
-            //Append Cocktai titile to Cocktail Result Card
+            //Append Cocktail title to Cocktail Result Card - response.drinks[j].strDrink is the api call for drink title
             drinksCard.append("<h5>"+ response.drinks[j].strDrink + "</h5>");
+            //Append Cocktail button to Cocktail Result Card
             drinksCard.append("<button class='newDrinks'>" + response.drinks[j].strDrink + "</button>");
-
-
-
-
-            // // variable for create button
-            // var drinksBtn = $("<button>");
-            // //Class = "newDrinks" for styling and click event targeting purposes
-            // drinksBtn.attr("class", "newDrinks");
-            // //Assign button text for Cocktail name from API
-            // drinksBtn.text(response.drinks[j].strDrink);
-            // //Append to "#search-results-drink" DIV
-            // $("#search-results-drink").append(drinksBtn);
         }
     })
 }
+
+function displayCocktailRecipe() {
+    drinksRecipeDiv = $("<div>");
+    drinksRecipeDiv.attr("class", "uk-container");
+
+    drinksRecipeDiv.attr("id", "drink-recipe-card");
+    $("#drinks-content").append(drinksRecipeDiv);
+
+    var drinkRecipeCard = $("#drink-recipe-card");
+    drinkRecipeCard.attr("class", "uk-card uk-card-default uk-grid-collapse uk-child-width-1-2");
+    drinkRecipeCard.append("<h3 class='uk-card-media-left uk-cover-container'> Drink Name </h3>");
+    drinkRecipeCard.append("<h4 class='uk-card-media-left uk-cover-container'> Ingredients </h6");
+    drinkRecipeCard.append("<ul class='uk-card-media-left uk-cover-container'> Ingredient 1 </ul>");
+    drinkRecipeCard.append("<ul class='uk-card-media-left uk-cover-container'> Ingredient 2 </ul>");
+
+    drinkRecipeCard.append("<img class='uk-card-media-right uk-cover-container' src='https://placehold.it/100'></img>");
+
+
+
+}
+
+
+
 
 
 
