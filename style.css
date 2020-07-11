@@ -7,11 +7,10 @@
 .header h1{
     margin: 0 auto;
     color: white;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .search {
-    width: 100%;
-    position: relative;
     display: flex;
   }
   
@@ -23,11 +22,13 @@
     height: 20px;
     border-radius: 5px 0 0 5px;
     outline: none;
-    color: black;
+    color:black;
+    font-size: 16px;
   }
   
   .searchTerm:focus{
     color: black;
+    font-size: 16px;
   }
   
   .searchButton {
@@ -40,21 +41,35 @@
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
+    font-family: 'Roboto', sans-serif;;
   }
   
   /*Resize the wrap to see the search bar change!*/
   .wrap{
     width: 30%;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+   margin: 25px auto 0;
+  
   }
 
   .wrap-cocktail{
     width: 30%;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
+  
+  }
+
+  .newRecipes{
+    margin: 5px;
+    padding: 12px;
+    background-color: #66CDAA;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    border: #66CDAA;
+    font-family: 'Roboto', sans-serif;
+  }
+
+
+  .newRecipes:hover{
+    cursor: pointer;
+    background-color: #3feee6;
   }

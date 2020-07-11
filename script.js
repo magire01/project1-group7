@@ -27,7 +27,7 @@ function displayToPage(ingredient){
         }).then(function(response) {
 
             console.log(response)
-            
+            // $("#search-results-recipe").empty() jeffrey added this but i do not think it works
             for (i = 0; i < 5; i++){
 
                 var recipeBtn = $("<button class = newRecipes>").text(response[i].title);
@@ -51,6 +51,6 @@ function displayCocktails() {
     })
 }
 
-displayRecipes();
+// displayRecipes();
 displayCocktails();
 
