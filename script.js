@@ -70,14 +70,27 @@ function displayCocktails(input) {
         console.log(response);
         //Loop to create "#search-results-drink" buttons
         for (var j = 0; j < 5; j++) {
-            console.log(response.drinks[0].strDrink)
-            var drinksBtn = $("<button>");
-            //Class = "newDrinks" for styling and click event targeting purposes
-            drinksBtn.attr("class", "newDrinks")
-            //Assign button text for Cocktail name from API
-            drinksBtn.text(response.drinks[j].strDrink);
-            //Append to "#search-results-drink" DIV
-            $("#search-results-drink").append(drinksBtn);
+            //Create Cocktail Search Result card
+            var drinksCard = $("<card>");
+            drinksCard.attr("class", "uk-card uk-card-default uk-card-body uk-width-1-5");
+            drinksCard.attr("id", "drinks-card");
+            //Append Cocktail Search Result card
+            $("#search-results-drink").append(drinksCard);
+            //Append Cocktai titile to Cocktail Result Card
+            drinksCard.append("<h5>"+ response.drinks[j].strDrink + "</h5>");
+            drinksCard.append("<button class='newDrinks'>" + response.drinks[j].strDrink + "</button>");
+
+
+
+
+            // // variable for create button
+            // var drinksBtn = $("<button>");
+            // //Class = "newDrinks" for styling and click event targeting purposes
+            // drinksBtn.attr("class", "newDrinks");
+            // //Assign button text for Cocktail name from API
+            // drinksBtn.text(response.drinks[j].strDrink);
+            // //Append to "#search-results-drink" DIV
+            // $("#search-results-drink").append(drinksBtn);
         }
     })
 }

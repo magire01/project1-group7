@@ -14,11 +14,13 @@
 </head>
 
 <body>
-    <div class="uk-grid header">
-        <h1>Dang, I'm Hungry!</h1>
+    <div class="uk-grid">
+        <div class="uk-grid header">
+            <h1>Dang, I'm Hungry!</h1>
+        </div>
     </div>
 
-    <div class="wrap">
+    <div class="uk-grid">
         <div class="search">
             <input id="search-bar-recipe" type="text" class="searchTerm"
                 placeholder="Please Enter Your Food Ingredients!">
@@ -35,7 +37,7 @@
         </div>
     </div>
 
-    <div class="wrap-cocktail">
+    <div class="uk-grid">
         <div class="search">
             <input id="search-bar-drinks" type="text" class="searchTerm"
                 placeholder="Please Enter Your Drink Ingredients!">
@@ -43,15 +45,12 @@
                 <i class="fa fa-search"></i>
             </button>
         </div>
+        <div class="uk-grid" id="search-results-drink">
+        </div>
         <div class="uk-grid">
-            <card id="search-results-drink"></card>
+            <card id="drinks-content">
+            </card>
         </div>
-            </div>
-        </div>
-    </div>
-    <div class="uk-grid">
-        <card id="drinks-content">
-        </card>
     </div>
 
 
