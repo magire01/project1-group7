@@ -155,7 +155,7 @@ function buildQueryURL(event) {
 // })
 
 function displayToPage(){
-        var apiURL = "https://api.spoonacular.com/food/products/search?query=" + ingredient1 + "&apiKey=2c42667b7c2a405bbf07446e5d8a2887";
+        var apiURL = "https://api.spoonacular.com/food/products/search?query=" + ingredient1 + "&apiKey=7b117b323fbe4805ae1814968944aca2";
 
         $.ajax({
             url: apiURL,
@@ -199,6 +199,36 @@ function displayCocktails() {
         console.log(response);
     })
 }
+function displayRecipieCard(){
+  var recipe = {
+    title: "Testipie",
+    img: "awesomepic",
+    ingredients: "good vittles",
+    instructions: "eat it",
+    readyInMinutes: 15,
+    servings: 8,
+    mask: "diamondMask",
+    backgroundImage:"hey",
+    author: "the Guy",
+    backgroundColor: "red",
+    fontColor: "blue",
+    source: "url",
+    apiKey: "7b117b323fbe4805ae1814968944aca2"
+  }
+  var cardURL = `https://api.spoonacular.com/recipes/visualizeRecipe?` +$.param(recipe)
+  $.ajax({
+    url: cardURL,
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data"
+    }
+  
+    
+}).then(function (response) {
+    console.log(response);
 
+})
+}
 displayRecipes();
-displayCocktails(
+displayCocktails();
+displayRecipieCard()
