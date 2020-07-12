@@ -9,7 +9,7 @@ $("#search-button-recipe").on("click", function (event) {
 
 $(document).on("click", ".newRecipes", function (event){
 
-    var recipe =$(this)[0].innerHTML;
+    var recipe=$(this)[0].innerHTML;
 
     console.log(recipe)
 
@@ -69,8 +69,15 @@ function displayCocktails(input) {
         method: "GET"
     }).then(function (response) {
         console.log(response);
+        //If statement to change drinksLength variable, so the for loop that creates search results shows no more than 5 
+        if (response.drinks.length < 5) {
+            var drinksLength = response.drinks.length;
+        } else {
+            var drinksLength = 5;
+        }
+
         //Loop to create "#search-results-drink" buttons
-        for (var j = 0; j < 5; j++) {
+        for (var j = 0; j < drinksLength; j++) {
             //Create Cocktail Search Result card
             var drinksCard = $("<card>");
             drinksCard.attr("class", "uk-card uk-card-default uk-card-body uk-width-1-5");
@@ -85,6 +92,7 @@ function displayCocktails(input) {
     })
 }
 
+
 function displayCocktailRecipe() {
     drinksRecipeDiv = $("<div>");
     drinksRecipeDiv.attr("class", "uk-container");
@@ -98,10 +106,8 @@ function displayCocktailRecipe() {
     drinkRecipeCard.append("<h4 class='uk-card-media-left uk-cover-container'> Ingredients </h6");
     drinkRecipeCard.append("<ul class='uk-card-media-left uk-cover-container'> Ingredient 1 </ul>");
     drinkRecipeCard.append("<ul class='uk-card-media-left uk-cover-container'> Ingredient 2 </ul>");
-
-    drinkRecipeCard.append("<img class='uk-card-media-right uk-cover-container' src='https://placehold.it/100'></img>");
-
-
+    drinkRecipeCard.append("<ul class='uk-card-media-left uk-cover-container'> Ingredient 3 </ul>");
+    drinkRecipeCard.append("<img class='uk-position-top-right content-picture' src='https://placehold.it/100'></img>");
 
 }
 
