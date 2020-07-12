@@ -43,6 +43,8 @@ function displayToPage(ingredient){
 //Click event for "#search-button-drinks"
 $("#search-button-drinks").on("click", function(event) {
      event.preventDefault();
+     //Empty the search results div so the next search will delete the previous search results
+     $("#search-results-drink").empty();
      //variable for value of search bar
      var ingredientDrinks = $("#search-bar-drinks").val();
      //Call displayCocktails (AJAX function for cocktailDB) allowing value of search to be used in queryURL
@@ -91,6 +93,7 @@ function displayCocktails(input) {
         }
     })
 }
+
 
 
 function displayCocktailRecipe() {
