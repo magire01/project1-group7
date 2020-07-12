@@ -93,6 +93,11 @@ function displayCocktails(input) {
     })
 }
 
+function displayText() {
+    console.log("test");
+}
+
+displayText();
 
 
 
