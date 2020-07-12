@@ -57,7 +57,6 @@ $(document).on("click", ".newDrinks", function (event){
     var drink = $(this)[0].innerHTML;
     //Button Name test
     console.log(drink);
-    displayCocktailRecipe();
 })
 
 //AJAX function for TheCocktailDB API (Input is dummy variable to pass "ingredientDrinks")
@@ -93,28 +92,6 @@ function displayCocktails(input) {
         }
     })
 }
-
-
-
-function displayCocktailRecipe() {
-    drinksRecipeDiv = $("<div>");
-    drinksRecipeDiv.attr("class", "uk-container");
-
-    drinksRecipeDiv.attr("id", "drink-recipe-card");
-    $("#drinks-content").append(drinksRecipeDiv);
-
-    var drinkRecipeCard = $("#drink-recipe-card");
-    drinkRecipeCard.attr("class", "uk-card uk-card-default uk-grid-collapse uk-child-width-1-2");
-    drinkRecipeCard.append("<h3 class='uk-card-media-left uk-cover-container'> Drink Name </h3>");
-    drinkRecipeCard.append("<h4 class='uk-card-media-left uk-cover-container'> Ingredients </h6");
-    drinkRecipeCard.append("<ul class='uk-card-media-left uk-cover-container'> Ingredient 1 </ul>");
-    drinkRecipeCard.append("<ul class='uk-card-media-left uk-cover-container'> Ingredient 2 </ul>");
-    drinkRecipeCard.append("<ul class='uk-card-media-left uk-cover-container'> Ingredient 3 </ul>");
-    drinkRecipeCard.append("<img class='uk-position-top-right content-picture' src='https://placehold.it/100'></img>");
-
-}
-
-
 
 
 
