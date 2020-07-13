@@ -150,28 +150,42 @@ function displayContentDrink(input2) {
     }).then(function (response) {
 
         console.log(response)
-
+       
         var drinksContent = $("<div>");
         $("#drinks-content").append(drinksContent);
-        drinksContent.append("<h3>Drink Name: " + response.drinks[0].strDrink + "<h3>");
-
-        drinksContent.append("<p>Ingredient 1: " + response.drinks[0].strIngredient1 + "<p>");
-
-        drinksContent.append("<p>Ingredient 2: " + response.drinks[0].strIngredient2 + "<p>");
-
-        drinksContent.append("<p>Ingredient 3: " + response.drinks[0].strIngredient3 + "<p>");
-
-        drinksContent.append("<p>Ingredient 4: " + response.drinks[0].strIngredient4 + "<p>");
-
-        drinksContent.append("<p>Ingredient 5: " + response.drinks[0].strIngredient5 + "<p>"); 
-
-        drinksContent.append("<p>Instructions: " + response.drinks[0].strInstructions + "<p>");
+        drinksContent.append("<h2>" + response.drinks[0].strDrink + "<h2>");
 
         var imgURL = response.drinks[0].strDrinkThumb;
 
         var image = $("<img>").attr("src", imgURL); 
 
         drinksContent.append(image);
+
+        var drink = response.drinks[0];
+
+        drinksContent.append("<p>Ingredient 1: " + response.drinks[0].strIngredient1 + "<p>");
+
+        if (drink.strIngredient2) {
+            drinksContent.append("<p>Ingredient 2: " + response.drinks[0].strIngredient2 + "<p>");
+        }
+
+        if (drink.strIngredient3) {
+            drinksContent.append("<p>Ingredient 3: " + response.drinks[0].strIngredient3 + "<p>");
+        }
+
+        if (drink.strIngredient4){
+        drinksContent.append("<p>Ingredient 4: " + response.drinks[0].strIngredient4 + "<p>");
+        }
+
+        if (drink.strIngredient5) {
+        drinksContent.append("<p>Ingredient 5: " + response.drinks[0].strIngredient5 + "<p>"); 
+        }
+
+        drinksContent.append("<p>Instructions: " + response.drinks[0].strInstructions + "<p>");
+
+
+
+        
     })
 }function nutritionInfo(id) {
   var nutritionURL =
