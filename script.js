@@ -77,6 +77,9 @@ $(document).on("click", ".newDrinks", function (event){
     //Variable for value of button text (in this case the recipe name pulled from API)
     var drink = $(this)[0].innerHTML;
     //Button Name test
+    var ingredientDrinks2 = $("#search-bar-drinks").val();
+   // displayDrink(ingredientDrinks2);
+    displayContentDrink(ingredientDrinks2);
     console.log(drink);
 })
 
@@ -112,12 +115,39 @@ function displayCocktails(input) {
             drinksCard.append("<button class='newDrinks'>" + response.drinks[j].strDrink + "</button>");
         }
     })
-
-displayRecipes();
-displayCocktails();
 }
 
+    
+    
+    function displayContentDrink (input2) {
+    
+        var cocktailURL2 = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input2}+&apiKey=1`
+        console.log(cocktailURL2);
+        //Call to AJAX 
+        $.ajax({
+            url: cocktailURL2,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response.drinks[0].strDrink)
+    var drinksContent = $("<div class='drink content'>");
+    $("#drinks-content").append(drinksContent);
 
 
+    var drinkName = $("<h2>")
+    drinkName.text(response.drinks[0].strDrink);
+    console.log(reponse.Instructions)
+    drinksContent.append(drinkName);
+    var drinkImg = $("<img>").attr({
+        "src": response.DrinkThumb,
+        "alt": response.Drink,
+        "class": "drinkImg" 
+    });
 
+    drinksContent.append(drinkImg);
+    var drinkRecipe = $("<p>").text(response.Instructions);
+   drinksContent.append(drinkRecipe)
+});
+    }
 
+   
+ 
