@@ -121,14 +121,14 @@ function displayCocktails(input) {
     
     function displayContentDrink (input2) {
     
-        var cocktailURL2 = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input2}+&apiKey=1`
+    var cocktailURL2 = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input2}+&apiKey=1`
         console.log(cocktailURL2);
         //Call to AJAX 
-        $.ajax({
-            url: cocktailURL2,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response.drinks[0].strDrink)
+    $.ajax({
+        url: cocktailURL2,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response.drinks[0].strDrink)
     var drinksContent = $("<div class='drink content'>");
     $("#drinks-content").append(drinksContent);
 
@@ -145,7 +145,7 @@ function displayCocktails(input) {
 
     drinksContent.append(drinkImg);
     var drinkRecipe = $("<p>").text(response.Instructions);
-   drinksContent.append(drinkRecipe)
+    drinksContent.append(drinkRecipe)
 });
     }
 
