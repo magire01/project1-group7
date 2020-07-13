@@ -10,17 +10,16 @@
     <script src="js/uikit.min.js"></script>
     <script src="js/uikit-icons.min.js"></script>
     <script src="https://use.fontawesome.com/13ed07a92f.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="uk-container">
-        <div class="uk-grid header">
+        <div class="header">
             <h1>Dang, I'm Hungry!</h1>
         </div>
-    </div>
 
-    <div class="uk-grid">
+    <div class="wrap">
         <div class="search">
             <input id="search-bar-recipe" type="text" class="searchTerm"
                 placeholder="Please Enter Your Food Ingredients!">
@@ -31,13 +30,10 @@
         <div class="uk-grid">
             <card id="search-results-recipe"></card>
         </div>
-        <div class="uk-grid">
-            <card id="recipe-content">
-            </card>
-        </div>
+        
     </div>
 
-    <div class="uk-grid">
+    <div class="wrap-cocktail">
         <div class="search">
             <input id="search-bar-drinks" type="text" class="searchTerm"
                 placeholder="Please Enter Your Drink Ingredients!">
@@ -45,13 +41,24 @@
                 <i class="fa fa-search"></i>
             </button>
         </div>
-        <div class="uk-grid" id="search-results-drink">
+        <div class="uk-grid">
+            <card id="search-results-drink"></card>
         </div>
     </div>
-    <div class="uk-container" id="drinks-content">
-    </div>
-    
 
+    
+<div class="uk-container">
+<div class="uk-grid">
+    <card id="recipe-content">
+    </card>
+</div>
+<div class="uk-grid">
+    <card id="drinks-content">
+    </card>
+ </div>
+</div>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
