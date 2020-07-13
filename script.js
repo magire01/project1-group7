@@ -150,19 +150,7 @@ function displayContentDrink(input2) {
        
         var drinksContent = $("<div>");
         $("#drinks-content").append(drinksContent);
-        drinksContent.append("<h3>" + response.drinks[0].strDrink + "<h3>");
-
-        drinksContent.append("<p>Ingredient 1: " + response.drinks[0].strIngredient1 + "<p>");
-
-        drinksContent.append("<p>Ingredient 2: " + response.drinks[0].strIngredient2 + "<p>");
-
-        drinksContent.append("<p>Ingredient 3: " + response.drinks[0].strIngredient3 + "<p>");
-
-        drinksContent.append("<p>Ingredient 4: " + response.drinks[0].strIngredient4 + "<p>");
-
-        drinksContent.append("<p>Ingredient 5: " + response.drinks[0].strIngredient5 + "<p>"); 
-
-        drinksContent.append("<p>Instructions: " + response.drinks[0].strInstructions + "<p>");
+        drinksContent.append("<h2>" + response.drinks[0].strDrink + "<h2>");
 
         var imgURL = response.drinks[0].strDrinkThumb;
 
@@ -170,8 +158,30 @@ function displayContentDrink(input2) {
 
         drinksContent.append(image);
 
-        if (strIngredient3 === "null" || strIngredient4 === "null" || strIngredient5 === "null")  {
-            return("");
-        } 
+        var drink = response.drinks[0];
+
+        drinksContent.append("<p>Ingredient 1: " + response.drinks[0].strIngredient1 + "<p>");
+
+        if (drink.strIngredient2) {
+            drinksContent.append("<p>Ingredient 2: " + response.drinks[0].strIngredient2 + "<p>");
+        }
+
+        if (drink.strIngredient3) {
+            drinksContent.append("<p>Ingredient 3: " + response.drinks[0].strIngredient3 + "<p>");
+        }
+
+        if (drink.strIngredient4){
+        drinksContent.append("<p>Ingredient 4: " + response.drinks[0].strIngredient4 + "<p>");
+        }
+
+        if (drink.strIngredient5) {
+        drinksContent.append("<p>Ingredient 5: " + response.drinks[0].strIngredient5 + "<p>"); 
+        }
+
+        drinksContent.append("<p>Instructions: " + response.drinks[0].strInstructions + "<p>");
+
+
+
+        
     })
 }
