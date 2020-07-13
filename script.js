@@ -22,7 +22,7 @@ $(document).on("click", ".newRecipes", function (event) {
 
 function displayToPage(ingredient) {
 
-    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=cbd9ed14fce948619e1c479e46d3406e";
+    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=7b117b323fbe4805ae1814968944aca2";
 
     $.ajax({
         url: apiURL,
@@ -45,7 +45,7 @@ function displayToPage(ingredient) {
 }
 
 function buildRecipeCard(recipe) {
-    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=cbd9ed14fce948619e1c479e46d3406e"
+    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=7b117b323fbe4805ae1814968944aca2"
     $.ajax({
         url: apiUrl,
         method: "GET"
