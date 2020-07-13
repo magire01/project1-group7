@@ -231,7 +231,7 @@ function randomFoodJoke() {
     url: jokeURL,
     method: "GET",
   }).then(function (response) {
-    console.log(response);
+    console.log("Have you heard?" + response);
   });
 }
 
@@ -243,7 +243,7 @@ function randomFoodTrivia() {
     url: triviaURL,
     method: "GET",
   }).then(function (response) {
-    console.log(response);
+    console.log("Random Fact" + response);
   });
 }
 randomFoodJoke();
