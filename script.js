@@ -152,7 +152,7 @@ function displayContentDrink(input2) {
 
         console.log(response)
        
-        var drinksContent = $("<div>");
+        var drinksContent = $("<div class = 'card'>");
         $("#drinks-content").append(drinksContent);
         drinksContent.append("<h2>" + response.drinks[0].strDrink + "<h2>");
 
