@@ -22,7 +22,7 @@ $(document).on("click", ".newRecipes", function (event) {
 
 function displayToPage(ingredient) {
 
-    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=cbd9ed14fce948619e1c479e46d3406e";
+    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=124a6ebafffa4ec9a8b75c752871ee40";
 
     $.ajax({
         url: apiURL,
@@ -45,17 +45,17 @@ function displayToPage(ingredient) {
 }
 
 function buildRecipeCard(recipe) {
-    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=cbd9ed14fce948619e1c479e46d3406e"
+    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=124a6ebafffa4ec9a8b75c752871ee40"
     $.ajax({
         url: apiUrl,
         method: "GET"
     }).then(function(response) {
 
         console.log(response)
-
+        
         var recipeCard = $("<card>");
 
-        var recipeTitle = $("<h3>").text(response.title);
+        var recipeTitle = $("<h2>").text(response.title);
 
         recipeCard.append(recipeTitle);
 
@@ -76,7 +76,6 @@ function buildRecipeCard(recipe) {
         recipeCard.append(servings);
 
         var link = $("<a>").text(response.sourceUrl);
-
         recipeCard.append(link);
 
         $("#recipe-content").append(recipeCard)
@@ -125,15 +124,15 @@ function displayCocktails(input) {
         //Loop to create "#search-results-drink" buttons
         for (var j = 0; j < drinksLength; j++) {
             //Create Cocktail Search Result card
-            var drinksCard = $("<card>");
-            drinksCard.attr("class", "uk-card uk-card-default uk-card-body uk-width-1-5");
-            drinksCard.attr("id", "drinks-card");
-            //Append Cocktail Search Result card to "#search-results-drink" div
-            $("#search-results-drink").append(drinksCard);
-            //Append Cocktail title to Cocktail Result Card - response.drinks[j].strDrink is the api call for drink title
-            drinksCard.append("<h5>"+ response.drinks[j].strDrink + "</h5>");
+            // var drinksCard = $("<card>");
+            // drinksCard.attr("class", "uk-card uk-card-default uk-card-body uk-width-1-5");
+            // drinksCard.attr("id", "drinks-card");
+            // //Append Cocktail Search Result card to "#search-results-drink" div
+            // $("#search-results-drink").append(drinksCard);
+            // //Append Cocktail title to Cocktail Result Card - response.drinks[j].strDrink is the api call for drink title
+            // drinksCard.append("<h5>"+ response.drinks[j].strDrink + "</h5>");
             //Append Cocktail button to Cocktail Result Card
-            drinksCard.append("<button class='newDrinks'>" + response.drinks[j].strDrink + "</button>");
+            $("#search-results-drink").append("<button class='newDrinks'>" + response.drinks[j].strDrink + "</button>");
         }
     })
 }

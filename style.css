@@ -1,13 +1,24 @@
+
 .header{
     background-color: #66CDAA;
     color: white;
     padding: 2%;
 }
 
+h2{
+  font-family:'Open Sans', sans-serif;
+  font-weight:bold ;
+}
+
+p{
+  font-size: 15px;
+}
+
 .header h1{
     margin: 0 auto;
     color: white;
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
 }
 
 .search {
@@ -53,7 +64,7 @@
 
   .wrap-cocktail{
     width: 30%;
-    margin: 0 auto;
+    margin: 25px auto 0;
   
   }
 
@@ -72,13 +83,33 @@
   .newRecipes:hover{
     cursor: pointer;
     background-color: #3feee6;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  }
+
+  .newDrinks{
+    margin: 5px;
+    padding: 12px;
+    background-color: #66CDAA;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    border: #66CDAA;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .newDrinks:hover{
+    cursor: pointer;
+    background-color: #3feee6;
   }
 
   .content-picture {
     width: 200px;
-    height: 200x;
+    height: 200px;
   }
+
+  img{
+    width: 220px;
+    height: 220px;
+  }
+
+
+ 

@@ -15,13 +15,11 @@
 </head>
 
 <body>
-    <div class="uk-container">
-        <div class="uk-grid header">
+        <div class="header">
             <h1>Dang, I'm Hungry!</h1>
         </div>
-    </div>
 
-    <div class="uk-grid">
+    <div class="wrap">
         <div class="search">
             <input id="search-bar-recipe" type="text" class="searchTerm"
                 placeholder="Please Enter Your Food Ingredients!">
@@ -32,13 +30,10 @@
         <div class="uk-grid">
             <card id="search-results-recipe"></card>
         </div>
-        <div class="uk-grid">
-            <card id="recipe-content">
-            </card>
-        </div>
+        
     </div>
 
-    <div class="uk-grid">
+    <div class="wrap-cocktail">
         <div class="search">
             <input id="search-bar-drinks" type="text" class="searchTerm"
                 placeholder="Please Enter Your Drink Ingredients!">
@@ -46,18 +41,25 @@
                 <i class="fa fa-search"></i>
             </button>
         </div>
-        <div class="uk-grid" id="search-results-drink">
+        <div class="uk-grid">
+            <card id="search-results-drink"></card>
         </div>
     </div>
-<<<<<<< HEAD
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-=======
-    <div class="uk-container" id="drinks-content">
-    </div>
-    
 
+    
+<div class="uk-container">
+<div class="uk-grid">
+    <card id="recipe-content">
+    </card>
+</div>
+<div class="uk-grid">
+    <card id="drinks-content">
+    </card>
+ </div>
+</div>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
->>>>>>> dc6b2de9cb2bbbc935823e86f2edf26717ce583a
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
 
