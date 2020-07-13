@@ -1,8 +1,10 @@
 $("#search-button-recipe").on("click", function (event) {
 
+    $("#recipe-content").empty();
+
     event.preventDefault();
 
-    var ingredient1 = $("#search-bar-recipe").val(); 
+    var ingredient1 = $("#search-bar-recipe").val();
 
     displayToPage(ingredient1)
 })
@@ -50,7 +52,7 @@ function buildRecipeCard(recipe) {
     $.ajax({
         url: apiUrl,
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
 
         console.log(response)
 
@@ -88,129 +90,95 @@ function buildRecipeCard(recipe) {
 //CocktailDB Search
 //Click event for "#search-button-drinks"
 $("#search-button-drinks").on("click", function (event) {
-  event.preventDefault();
-  //Empty the search results div so the next search will delete the previous search results
-  $("#search-results-drink").empty();
-  //variable for value of search bar
-  var ingredientDrinks = $("#search-bar-drinks").val();
-  //Call displayCocktails (AJAX function for cocktailDB) allowing value of search to be used in queryURL
-  displayCocktails(ingredientDrinks);
-});
+    event.preventDefault();
+
+    $("#drinks-content").empty();
+    //Empty the search results div so the next search will delete the previous search results
+    $("#search-results-drink").empty();
+    //variable for value of search bar
+    var ingredientDrinks = $("#search-bar-drinks").val();
+    //Call displayCocktails (AJAX function for cocktailDB) allowing value of search to be used in queryURL
+    displayCocktails(ingredientDrinks)
+})
 
 //Click events for each generated "#search-results-drinks" button
 $(document).on("click", ".newDrinks", function (event) {
-  //Variable for value of button text (in this case the recipe name pulled from API)
-  var drink = $(this)[0].innerHTML;
-  //Button Name test
-  console.log(drink);
-});
+    //Variable for value of button text (in this case the recipe name pulled from API)
+    $("#drinks-content").empty();
 
-// //AJAX function for TheCocktailDB API (Input is dummy variable to pass "ingredientDrinks")
-// function displayCocktails(input) {
-//   //URL link which will pass "input" AKA ingredientDrinks
-//   var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input}+&apiKey=1`;
-//   console.log(cocktailURL);
-//   //Call to AJAX
-//   $.ajax({
-//     url: cocktailURL,
-//     method: "GET",
-//   }).then(function (response) {
-//     console.log(response);
-//     //If statement to change drinksLength variable, so the for loop that creates search results shows no more than 5
-//     if (response.drinks.length < 5) {
-//       var drinksLength = response.drinks.length;
-//     } else {
-//       var drinksLength = 5;
-//     }
+    var drinkRecipe = $(this).data("name")
+    //Button Name test
+    console.log(drinkRecipe);
 
-//     //Loop to create "#search-results-drink" buttons
-//     for (var j = 0; j < drinksLength; j++) {
-//       //Create Cocktail Search Result card
-//       var drinksCard = $("<card>");
-//       drinksCard.attr(
-//         "class",
-//         "uk-card uk-card-default uk-card-body uk-width-1-5"
-//       );
-//       drinksCard.attr("id", "drinks-card");
-//       //Append Cocktail Search Result card to "#search-results-drink" div
-//       $("#search-results-drink").append(drinksCard);
-//       //Append Cocktail title to Cocktail Result Card - response.drinks[j].strDrink is the api call for drink title
-//       drinksCard.append("<h5>" + response.drinks[j].strDrink + "</h5>");
-//       //Append Cocktail button to Cocktail Result Card
-//       drinksCard.append(
-//         "<button class='newDrinks'>" + response.drinks[j].strDrink + "</button>"
-//       );
-//     }
-//   });
-// }
+    displayContentDrink(drinkRecipe);
+})
 
-// displayRecipes();
-// displayCocktails();
 
-//recipes Search
-//Click event for "#search-button-recipe"
-// $("#search-button-recipe").on("click", function (event) {
-//   event.preventDefault();
-//   //Empty the search results div so the next search will delete the previous search results
-//   $("#search-bar-recipe").empty();
-//   //variable for value of search bar
-//   var ingredientRecipe = $("#search-bar-recipe").val();
-//   //Call displayRecipes (AJAX function for spoonacular) allowing value of search to be used in queryURL
-//   // displayRecipes(ingredientRecipe);
-// });
 
-//Click events for each generated "#search-results-recipe" button
-$(document).on("click", ".newRecipes", function (event) {
-  //Variable for value of button text (in this case the recipe name pulled from API)
-  var recipe = $(this)[0].innerHTML;
-  //Button Name test
-  console.log(recipe);
-});
+//AJAX function for TheCocktailDB API (Input is dummy variable to pass "ingredientDrinks")
+function displayCocktails(input) {
+    //URL link which will pass "input" AKA ingredientDrinks
+    var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input}+&apiKey=1`
 
-//AJAX function for spoonacular API (Input is dummy variable to pass "ingredientRecipe")
-function displayRecipes(input) {
-  //URL link which will pass "input" AKA ingredientDrinks
-  var recipeURL =
-    "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" +
-    { input } +
-    "&number=5&apiKey=124a6ebafffa4ec9a8b75c752871ee40";
-  console.log(recipeURL);
-  //Call to AJAX
-  $.ajax({
-    url: recipeURL,
-    method: "GET",
-  }).then(function (response) {
-    console.log(response);
-    //If statement to change drinksLength variable, so the for loop that creates search results shows no more than 5
-    if (response.length < 5) {
-      var recipeLength = response.length;
-    } else {
-      var recipeLength = 5;
-    }
+    $.ajax({
+        url: cocktailURL,
+        method: "GET"
+    }).then(function (response) {
 
-    //Loop to create "#search-results-drink" buttons
-    for (var j = 0; j < recipeLength; j++) {
-      //Create Cocktail Search Result card
-      var recipesCard = $("<card>");
-      recipesCard.attr(
-        "class",
-        "uk-card uk-card-default uk-card-body uk-width-1-5"
-      );
-      recipesCard.attr("id", "recipe-card");
-      //Append Cocktail Search Result card to "#search-results-drink" div
-      $("#search-results-recipe").append(recipesCard);
-      //Append Cocktail title to Cocktail Result Card - response.drinks[j].strDrink is the api call for drink title
-      recipesCard.append("<h5>" + response[j].title + "</h5>");
-      //Append Cocktail button to Cocktail Result Card
-      recipesCard.append(
-        "<button class='newRecipe'>" +
-          response[j].title+
-          "</button>"
-      );
-    }
-  });
+        console.log(response);
+
+        for (var i = 0; i < 5; i++) {
+
+            var drinksBtn = $("<button class = newDrinks>");
+
+            console.log(response.drinks[i].strDrink)
+
+            drinksBtn.attr("data-name", response.drinks[i].strDrink)
+
+            var drinkName = $("<p>").text(response.drinks[i].strDrink)
+
+            drinksBtn.append(drinkName)
+
+            $("#search-results-drink").append(drinksBtn);
+        }
+    })
 }
-function nutritionInfo(id) {
+
+function displayContentDrink(input2) {
+
+    var cocktailURL2 = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input2}&apiKey=1`
+    console.log(cocktailURL2);
+    //Call to AJAX 
+    $.ajax({
+        url: cocktailURL2,
+        method: "GET"
+    }).then(function (response) {
+
+        console.log(response)
+
+        var drinksContent = $("<div>");
+        $("#drinks-content").append(drinksContent);
+        drinksContent.append("<h3>Drink Name: " + response.drinks[0].strDrink + "<h3>");
+
+        drinksContent.append("<p>Ingredient 1: " + response.drinks[0].strIngredient1 + "<p>");
+
+        drinksContent.append("<p>Ingredient 2: " + response.drinks[0].strIngredient2 + "<p>");
+
+        drinksContent.append("<p>Ingredient 3: " + response.drinks[0].strIngredient3 + "<p>");
+
+        drinksContent.append("<p>Ingredient 4: " + response.drinks[0].strIngredient4 + "<p>");
+
+        drinksContent.append("<p>Ingredient 5: " + response.drinks[0].strIngredient5 + "<p>"); 
+
+        drinksContent.append("<p>Instructions: " + response.drinks[0].strInstructions + "<p>");
+
+        var imgURL = response.drinks[0].strDrinkThumb;
+
+        var image = $("<img>").attr("src", imgURL); 
+
+        drinksContent.append(image);
+    })
+}function nutritionInfo(id) {
   var nutritionURL =
     `https://api.spoonacular.com/recipes/${id}/nutritionWidget?apiKey=7b117b323fbe4805ae1814968944aca2&defaultCss=true`;
 
@@ -231,7 +199,7 @@ function randomFoodJoke() {
     url: jokeURL,
     method: "GET",
   }).then(function (response) {
-    console.log("Have you heard?" + response);
+    console.log("Have you heard? ....." + response.text);
   });
 }
 
@@ -243,7 +211,7 @@ function randomFoodTrivia() {
     url: triviaURL,
     method: "GET",
   }).then(function (response) {
-    console.log("Random Fact" + response);
+    console.log("Random Fact :" + response.text);
   });
 }
 randomFoodJoke();
