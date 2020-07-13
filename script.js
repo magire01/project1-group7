@@ -1,64 +1,88 @@
-// $("#search-button").on("click", function(event){
-//     event.preventDefault
-//     var ingredient1 = $("search-bar").val();
-//     console.log(ingredient1)
-// })
+$("#search-button-recipe").on("click", function (event) {
 
-function displayToPage() {
-    var apiURL = "https://api.spoonacular.com/food/products/search?query=" + ingredient1 + "&apiKey=2c42667b7c2a405bbf07446e5d8a2887";
+    event.preventDefault();
+
+    var ingredient1 = $("#search-bar-recipe").val(); 
+
+    displayToPage(ingredient1)
+})
+
+$(document).on("click", ".newRecipes", function (event) {
+
+    $("#recipe-content").empty();
+
+    var recipe = $(this).data("name")
+
+    console.log("This button was press: \n", recipe)
+
+    buildRecipeCard(recipe);
+
+    console.log("This button was press: \n",recipe)
+})
+
+function displayToPage(ingredient) {
+
+    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=cbd9ed14fce948619e1c479e46d3406e";
 
     $.ajax({
         url: apiURL,
         method: "GET"
     }).then(function (response) {
+
         console.log(response);
+
+        for (i = 0; i < 5; i++) {
+
+            var recipeBtn = $("<button class = newRecipes>").text(response[i].title);
+
+            recipeBtn.attr("data-name", response[i].id)
+
+            $("#search-results-recipe").append(recipeBtn)
+
+        }
+    });
+
+}
+
+function buildRecipeCard(recipe) {
+    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=cbd9ed14fce948619e1c479e46d3406e"
+    $.ajax({
+        url: apiUrl,
+        method: "GET"
+    }).then(function(response) {
+
+        console.log(response)
+
+        var recipeCard = $("<card>");
+
+        var recipeTitle = $("<h3>").text(response.title);
+
+        recipeCard.append(recipeTitle);
+
+        var recipeImage = $("<img>").attr("src", response.image);
+
+        recipeCard.append(recipeImage);
+
+        var recipePrepTime = $("<p>").text("Prep Time - " + response.preparationMinutes + " Minutes");
+
+        recipeCard.append(recipePrepTime);
+
+        var recipeCookTime = $("<p>").text("Cook Time - " + response.cookingMinutes + " Minutes");
+
+        recipeCard.append(recipeCookTime);
+
+        var servings = $("<p>").text("Servings - " + response.servings);
+
+        recipeCard.append(servings);
+
+        var link = $("<a>").text(response.sourceUrl);
+
+        recipeCard.append(link);
+
+        $("#recipe-content").append(recipeCard)
+
     });
 }
-// * displays the functions that we are calling
-
-
-
-// var testing = "testing the Jquery";
-$("#search-button-recipe").on("click", function (event) {
-
-    event.preventDefault();
-
-    var ingredient1 = $("#search-bar-recipe").val();
-
-    displayToPage(ingredient1)
-})
-
-$(document).on("click", ".newRecipes", function (event){
-
-    var recipe=$(this)[0].innerHTML;
-
-    console.log(recipe)
-
-})
-
-
-
-function displayToPage(ingredient){
-    
-        var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=124a6ebafffa4ec9a8b75c752871ee40";
-
-        $.ajax({
-            url: apiURL,
-            method:"GET"
-        }).then(function(response) {
-
-            console.log(response)
-            
-            for (i = 0; i < 5; i++){
-
-                var recipeBtn = $("<button class = newRecipes>").text(response[i].title);
-
-                $("#search-results-recipe").append(recipeBtn)
-
-            }
-        });
-        
-    } 
 
 //CocktailDB Search
 //Click event for "#search-button-drinks"
@@ -77,9 +101,6 @@ $(document).on("click", ".newDrinks", function (event){
     //Variable for value of button text (in this case the recipe name pulled from API)
     var drink = $(this)[0].innerHTML;
     //Button Name test
-    var ingredientDrinks2 = $("#search-bar-drinks").val();
-   // displayDrink(ingredientDrinks2);
-    displayContentDrink(ingredientDrinks2);
     console.log(drink);
 })
 
@@ -119,7 +140,13 @@ function displayCocktails(input) {
 
     
     
-    function displayContentDrink (input2) {
+   
+
+
+
+
+
+function displayContentDrink (input2) {
     
     var cocktailURL2 = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input2}+&apiKey=1`
         console.log(cocktailURL2);
