@@ -18,11 +18,14 @@ $(document).on("click", ".newRecipes", function (event) {
     console.log("This button was press: \n", recipe)
 
     buildRecipeCard(recipe);
+    nutritionInfo(recipe);
+
+    console.log("This button was press: \n",recipe)
 })
 
 function displayToPage(ingredient) {
 
-    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=26ac3ffbd7f44fecab6782f58704ed4e";
+    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=7b117b323fbe4805ae1814968944aca2";
 
     $.ajax({
         url: apiURL,
@@ -45,7 +48,7 @@ function displayToPage(ingredient) {
 }
 
 function buildRecipeCard(recipe) {
-    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=26ac3ffbd7f44fecab6782f58704ed4e"
+    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=7b117b323fbe4805ae1814968944aca2"
     $.ajax({
         url: apiUrl,
         method: "GET"
@@ -184,4 +187,45 @@ function displayContentDrink(input2) {
 
         
     })
+}function nutritionInfo(id) {
+  var nutritionURL =
+    `https://api.spoonacular.com/recipes/${id}/nutritionWidget?apiKey=7b117b323fbe4805ae1814968944aca2&defaultCss=true`;
+
+  $.ajax({
+    url: nutritionURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+  });
 }
+
+
+function randomFoodJoke() {
+  var jokeURL =
+    "https://api.spoonacular.com/food/jokes/random?apiKey=7b117b323fbe4805ae1814968944aca2";
+
+  $.ajax({
+    url: jokeURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log("Have you heard? ....." + response.text);
+    $("#food-joke").append("<h4 class='Title'>Random Food Joke</h4>")
+    $("#food-joke").append("<p class='HAHA'> Have you heard? ....." + response.text + "</p>")
+  });
+}
+
+function randomFoodTrivia() {
+  var triviaURL =
+    "https://api.spoonacular.com/food/trivia/random?apiKey=7b117b323fbe4805ae1814968944aca2";
+
+  $.ajax({
+    url: triviaURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log("Random Fact :" + response.text);
+    $("#food-trivia").append("<h4 class='Title'>Random Fun Fact</h4>")
+    $("#food-trivia").append("<p class='WOW'> Did You Know? ....." + response.text + "</p>")
+  });
+}
+randomFoodJoke();
+randomFoodTrivia();
