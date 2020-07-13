@@ -47,35 +47,6 @@ function displayToPage(ingredient){
 
 function buildRecipeCard(recipe) {
     var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=cbd9ed14fce948619e1c479e46d3406e"
-
-    } 
-
-//CocktailDB Search
-//Click event for "#search-button-drinks"
-$("#search-button-drinks").on("click", function(event) {
-     event.preventDefault();
-     //Empty the search results div so the next search will delete the previous search results
-     $("#search-results-drink").empty();
-     //variable for value of search bar
-     var ingredientDrinks = $("#search-bar-drinks").val();
-     //Call displayCocktails (AJAX function for cocktailDB) allowing value of search to be used in queryURL
-     displayCocktails(ingredientDrinks)
-})
-
-//Click events for each generated "#search-results-drinks" button
-$(document).on("click", ".newDrinks", function (event){
-    //Variable for value of button text (in this case the recipe name pulled from API)
-    var drink = $(this)[0].innerHTML;
-    //Button Name test
-    console.log(drink);
-})
-
-//AJAX function for TheCocktailDB API (Input is dummy variable to pass "ingredientDrinks")
-function displayCocktails(input) {
-    //URL link which will pass "input" AKA ingredientDrinks
-    var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input}+&apiKey=1`
-    console.log(cocktailURL);
-    //Call to AJAX 
     $.ajax({
         url: apiUrl,
         method: "GET"
@@ -111,6 +82,38 @@ function displayCocktails(input) {
 
         $("#recipe-content").append(recipeCard)
 
+
+    } 
+
+//CocktailDB Search
+//Click event for "#search-button-drinks"
+$("#search-button-drinks").on("click", function(event) {
+     event.preventDefault();
+     //Empty the search results div so the next search will delete the previous search results
+     $("#search-results-drink").empty();
+     //variable for value of search bar
+     var ingredientDrinks = $("#search-bar-drinks").val();
+     //Call displayCocktails (AJAX function for cocktailDB) allowing value of search to be used in queryURL
+     displayCocktails(ingredientDrinks)
+})
+
+//Click events for each generated "#search-results-drinks" button
+$(document).on("click", ".newDrinks", function (event){
+    //Variable for value of button text (in this case the recipe name pulled from API)
+    var drink = $(this)[0].innerHTML;
+    //Button Name test
+    console.log(drink);
+})
+
+//AJAX function for TheCocktailDB API (Input is dummy variable to pass "ingredientDrinks")
+function displayCocktails(input) {
+    //URL link which will pass "input" AKA ingredientDrinks
+    var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input}+&apiKey=1`
+    console.log(cocktailURL);
+    //Call to AJAX 
+    $.ajax({
+        url: apiUrl,
+        method: "GET"
     }).then(function (response) {
         console.log(response);
         //If statement to change drinksLength variable, so the for loop that creates search results shows no more than 5 
