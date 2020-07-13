@@ -97,11 +97,16 @@ $("#search-button-drinks").on("click", function(event) {
 })
 
 //Click events for each generated "#search-results-drinks" button
+
 $(document).on("click", ".newDrinks", function (event){
     //Variable for value of button text (in this case the recipe name pulled from API)
     var drink = $(this)[0].innerHTML;
-    //Button Name test
     console.log(drink);
+    var ingredientDrinks = $("#search-bar-drinks").val();
+    displayContentDrink(ingredientDrinks);
+  
+    //Button Name test
+    
 })
 
 //AJAX function for TheCocktailDB API (Input is dummy variable to pass "ingredientDrinks")
@@ -124,6 +129,7 @@ function displayCocktails(input) {
 
         //Loop to create "#search-results-drink" buttons
         for (var j = 0; j < drinksLength; j++) {
+           
             //Create Cocktail Search Result card
             var drinksCard = $("<card>");
             drinksCard.attr("class", "uk-card uk-card-default uk-card-body uk-width-1-5");
@@ -134,16 +140,10 @@ function displayCocktails(input) {
             drinksCard.append("<h5>"+ response.drinks[j].strDrink + "</h5>");
             //Append Cocktail button to Cocktail Result Card
             drinksCard.append("<button class='newDrinks'>" + response.drinks[j].strDrink + "</button>");
-        }
+       }
     })
 }
-
     
-    
-   
-
-
-
 
 
 function displayContentDrink (input2) {
@@ -155,26 +155,31 @@ function displayContentDrink (input2) {
         url: cocktailURL2,
         method: "GET"
     }).then(function (response) {
-        console.log(response.drinks[0].strDrink)
-    var drinksContent = $("<div class='drink content'>");
+        console.log(response)
+    var drinksContent = $("<div>");
     $("#drinks-content").append(drinksContent);
+    drinksContent.append("<h2>Drink Name: " + response.drinks[j].strDrink + "<h2>");
+    drinksContent.append("<h2>Ingredient 1: " + response.drinks[j].strIngredient1 + "<h2>");
+    drinksContent.append("<h2>Ingredient 2: " + response.drinks[j].strIngredient2 + "<h2>");
+    drinksContent.append("<h2>Ingredient 3: " + response.drinks[j].strIngredient3 + "<h2>");
+    drinksContent.append("<h2>Ingredient 4: " + response.drinks[j].strIngredient4 + "<h2>");
+    drinksContent.append("<h2>Ingredient 5: " + response.drinks[j].strIngredient5 + "<h2>");
+    drinksContent.append("<h2>Instructions: " + response.drinks[j].strInstructions + "<h2>");
+    
+    var imgURL = response.drinks[0].strDrinkThumb;
+    var image = $("<img>").attr("src", imgURL);
+    drinksContent.append(image);
 
+    if (drinksContent !== null){
 
-    var drinkName = $("<h2>")
-    drinkName.text(response.drinks[0].strDrink);
-    console.log(reponse.Instructions)
-    drinksContent.append(drinkName);
-    var drinkImg = $("<img>").attr({
-        "src": response.DrinkThumb,
-        "alt": response.Drink,
-        "class": "drinkImg" 
-    });
-
-    drinksContent.append(drinkImg);
-    var drinkRecipe = $("<p>").text(response.Instructions);
-    drinksContent.append(drinkRecipe)
-});
+    } else {
+        
     }
+    }
+    )
+}
+
+
 
    
  
