@@ -1,8 +1,8 @@
 $("#search-button-recipe").on("click", function (event) {
 
-    $("#recipe-content").empty();
-
     event.preventDefault();
+
+    $("#search-results-recipe").empty();
 
     var ingredient1 = $("#search-bar-recipe").val();
 
@@ -18,11 +18,14 @@ $(document).on("click", ".newRecipes", function (event) {
     console.log("This button was press: \n", recipe)
 
     buildRecipeCard(recipe);
+    nutritionInfo(recipe);
+
+    console.log("This button was press: \n",recipe)
 })
 
 function displayToPage(ingredient) {
 
-    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=26ac3ffbd7f44fecab6782f58704ed4e";
+    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=7b117b323fbe4805ae1814968944aca2";
 
     $.ajax({
         url: apiURL,
@@ -37,7 +40,7 @@ function displayToPage(ingredient) {
 
             recipeBtn.attr("data-name", response[i].id)
 
-            $("#search-results-recipe").append(recipeBtn)
+            $("#search-results-recipe").append(recipeBtn);
 
         }
     });
@@ -45,7 +48,7 @@ function displayToPage(ingredient) {
 }
 
 function buildRecipeCard(recipe) {
-    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=26ac3ffbd7f44fecab6782f58704ed4e"
+    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=7b117b323fbe4805ae1814968944aca2"
     $.ajax({
         url: apiUrl,
         method: "GET"
@@ -148,29 +151,81 @@ function displayContentDrink(input2) {
     }).then(function (response) {
 
         console.log(response)
-
-        var drinksContent = $("<div class = 'card'>");
+       
+        var drinksContent = $("<div>");
         $("#drinks-content").append(drinksContent);
-      
-        drinksContent.append("<h2>Drink Name: " + response.drinks[0].strDrink + "<h2>");
+        drinksContent.append("<h2>" + response.drinks[0].strDrink + "<h2>");
+
         var imgURL = response.drinks[0].strDrinkThumb;
+
         var image = $("<img>").attr("src", imgURL); 
+
         drinksContent.append(image);
+
+        var drink = response.drinks[0];
 
         drinksContent.append("<p>Ingredient 1: " + response.drinks[0].strIngredient1 + "<p>");
 
-        drinksContent.append("<p>Ingredient 2: " + response.drinks[0].strIngredient2 + "<p>");
+        if (drink.strIngredient2) {
+            drinksContent.append("<p>Ingredient 2: " + response.drinks[0].strIngredient2 + "<p>");
+        }
 
-        drinksContent.append("<p>Ingredient 3: " + response.drinks[0].strIngredient3 + "<p>");
+        if (drink.strIngredient3) {
+            drinksContent.append("<p>Ingredient 3: " + response.drinks[0].strIngredient3 + "<p>");
+        }
 
+        if (drink.strIngredient4){
         drinksContent.append("<p>Ingredient 4: " + response.drinks[0].strIngredient4 + "<p>");
+        }
 
+        if (drink.strIngredient5) {
         drinksContent.append("<p>Ingredient 5: " + response.drinks[0].strIngredient5 + "<p>"); 
+        }
 
         drinksContent.append("<p>Instructions: " + response.drinks[0].strInstructions + "<p>");
 
-        
 
         
     })
+}function nutritionInfo(id) {
+  var nutritionURL =
+    `https://api.spoonacular.com/recipes/${id}/nutritionWidget?apiKey=7b117b323fbe4805ae1814968944aca2&defaultCss=true`;
+
+  $.ajax({
+    url: nutritionURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+  });
 }
+
+
+function randomFoodJoke() {
+  var jokeURL =
+    "https://api.spoonacular.com/food/jokes/random?apiKey=7b117b323fbe4805ae1814968944aca2";
+
+  $.ajax({
+    url: jokeURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log("Have you heard? ....." + response.text);
+    $("#food-joke").append("<h4 class='Title'>Random Food Joke</h4>")
+    $("#food-joke").append("<p class='HAHA'> Have you heard? ....." + response.text + "</p>")
+  });
+}
+
+function randomFoodTrivia() {
+  var triviaURL =
+    "https://api.spoonacular.com/food/trivia/random?apiKey=7b117b323fbe4805ae1814968944aca2";
+
+  $.ajax({
+    url: triviaURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log("Random Fact :" + response.text);
+    $("#food-trivia").append("<h4 class='Title'>Random Fun Fact</h4>")
+    $("#food-trivia").append("<p class='WOW'> Did You Know? ....." + response.text + "</p>")
+  });
+}
+randomFoodJoke();
+randomFoodTrivia();
