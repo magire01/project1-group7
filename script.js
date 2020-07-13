@@ -16,6 +16,7 @@ $(document).on("click", ".newRecipes", function (event) {
     console.log("This button was press: \n", recipe)
 
     buildRecipeCard(recipe);
+    nutritionInfo(recipe);
 
     console.log("This button was press: \n",recipe)
 })
@@ -143,20 +144,20 @@ $(document).on("click", ".newDrinks", function (event) {
 //   });
 // }
 
-displayRecipes();
-displayCocktails();
+// displayRecipes();
+// displayCocktails();
 
 //recipes Search
 //Click event for "#search-button-recipe"
-$("#search-button-recipe").on("click", function (event) {
-  event.preventDefault();
-  //Empty the search results div so the next search will delete the previous search results
-  $("#search-bar-recipe").empty();
-  //variable for value of search bar
-  var ingredientRecipe = $("#search-bar-recipe").val();
-  //Call displayRecipes (AJAX function for spoonacular) allowing value of search to be used in queryURL
-  displayRecipes(ingredientRecipe);
-});
+// $("#search-button-recipe").on("click", function (event) {
+//   event.preventDefault();
+//   //Empty the search results div so the next search will delete the previous search results
+//   $("#search-bar-recipe").empty();
+//   //variable for value of search bar
+//   var ingredientRecipe = $("#search-bar-recipe").val();
+//   //Call displayRecipes (AJAX function for spoonacular) allowing value of search to be used in queryURL
+//   // displayRecipes(ingredientRecipe);
+// });
 
 //Click events for each generated "#search-results-recipe" button
 $(document).on("click", ".newRecipes", function (event) {
@@ -181,8 +182,8 @@ function displayRecipes(input) {
   }).then(function (response) {
     console.log(response);
     //If statement to change drinksLength variable, so the for loop that creates search results shows no more than 5
-    if (response.recipe.length < 5) {
-      var recipeLength = response.recipe.length;
+    if (response.length < 5) {
+      var recipeLength = response.length;
     } else {
       var recipeLength = 5;
     }
@@ -197,15 +198,53 @@ function displayRecipes(input) {
       );
       recipesCard.attr("id", "recipe-card");
       //Append Cocktail Search Result card to "#search-results-drink" div
-      $("#search-results-recipe").append(recipeCard);
+      $("#search-results-recipe").append(recipesCard);
       //Append Cocktail title to Cocktail Result Card - response.drinks[j].strDrink is the api call for drink title
-      recipesCard.append("<h5>" + response.recipe[j].strRecipe + "</h5>");
+      recipesCard.append("<h5>" + response[j].title + "</h5>");
       //Append Cocktail button to Cocktail Result Card
       recipesCard.append(
         "<button class='newRecipe'>" +
-          response.recipe[j].strRecipe +
+          response[j].title+
           "</button>"
       );
     }
   });
 }
+function nutritionInfo(id) {
+  var nutritionURL =
+    `https://api.spoonacular.com/recipes/${id}/nutritionWidget?apiKey=7b117b323fbe4805ae1814968944aca2&defaultCss=true`;
+
+  $.ajax({
+    url: nutritionURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+  });
+}
+
+
+function randomFoodJoke() {
+  var jokeURL =
+    "https://api.spoonacular.com/food/jokes/random?apiKey=7b117b323fbe4805ae1814968944aca2";
+
+  $.ajax({
+    url: jokeURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+  });
+}
+
+function randomFoodTrivia() {
+  var triviaURL =
+    "https://api.spoonacular.com/food/trivia/random?apiKey=7b117b323fbe4805ae1814968944aca2";
+
+  $.ajax({
+    url: triviaURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+  });
+}
+randomFoodJoke();
+randomFoodTrivia();
