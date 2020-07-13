@@ -99,18 +99,6 @@ $("#search-button-drinks").on("click", function (event) {
 })
 
 //Click events for each generated "#search-results-drinks" button
-<<<<<<< HEAD
-
-$(document).on("click", ".newDrinks", function (event){
-    //Variable for value of button text (in this case the recipe name pulled from API)
-    var drink = $(this)[0].innerHTML;
-    console.log(drink);
-    var ingredientDrinks = $("#search-bar-drinks").val();
-    displayContentDrink(ingredientDrinks);
-  
-    //Button Name test
-    
-=======
 $(document).on("click", ".newDrinks", function (event) {
     //Variable for value of button text (in this case the recipe name pulled from API)
     $("#drinks-content").empty();
@@ -120,7 +108,6 @@ $(document).on("click", ".newDrinks", function (event) {
     console.log(drinkRecipe);
 
     displayContentDrink(drinkRecipe);
->>>>>>> master
 })
 
 
@@ -137,32 +124,6 @@ function displayCocktails(input) {
 
         console.log(response);
 
-<<<<<<< HEAD
-        //Loop to create "#search-results-drink" buttons
-        for (var j = 0; j < drinksLength; j++) {
-           
-            //Create Cocktail Search Result card
-            var drinksCard = $("<card>");
-            drinksCard.attr("class", "uk-card uk-card-default uk-card-body uk-width-1-5");
-            drinksCard.attr("id", "drinks-card");
-            //Append Cocktail Search Result card to "#search-results-drink" div
-            $("#search-results-drink").append(drinksCard);
-            //Append Cocktail title to Cocktail Result Card - response.drinks[j].strDrink is the api call for drink title
-            drinksCard.append("<h5>"+ response.drinks[j].strDrink + "</h5>");
-            //Append Cocktail button to Cocktail Result Card
-            drinksCard.append("<button class='newDrinks'>" + response.drinks[j].strDrink + "</button>");
-       }
-    })
-}
-    
-
-
-function displayContentDrink (input2) {
-    
-    var cocktailURL2 = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input2}+&apiKey=1`
-        console.log(cocktailURL2);
-        //Call to AJAX 
-=======
         for (var i = 0; i < 5; i++) {
 
             var drinksBtn = $("<button class = newDrinks>");
@@ -185,47 +146,16 @@ function displayContentDrink(input2) {
     var cocktailURL2 = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input2}&apiKey=1`
     console.log(cocktailURL2);
     //Call to AJAX 
->>>>>>> master
     $.ajax({
         url: cocktailURL2,
         method: "GET"
     }).then(function (response) {
-<<<<<<< HEAD
-        console.log(response)
-    var drinksContent = $("<div>");
-    $("#drinks-content").append(drinksContent);
-    drinksContent.append("<h2>Drink Name: " + response.drinks[j].strDrink + "<h2>");
-    drinksContent.append("<h2>Ingredient 1: " + response.drinks[j].strIngredient1 + "<h2>");
-    drinksContent.append("<h2>Ingredient 2: " + response.drinks[j].strIngredient2 + "<h2>");
-    drinksContent.append("<h2>Ingredient 3: " + response.drinks[j].strIngredient3 + "<h2>");
-    drinksContent.append("<h2>Ingredient 4: " + response.drinks[j].strIngredient4 + "<h2>");
-    drinksContent.append("<h2>Ingredient 5: " + response.drinks[j].strIngredient5 + "<h2>");
-    drinksContent.append("<h2>Instructions: " + response.drinks[j].strInstructions + "<h2>");
-    
-    var imgURL = response.drinks[0].strDrinkThumb;
-    var image = $("<img>").attr("src", imgURL);
-    drinksContent.append(image);
-
-    if (drinksContent !== null){
-
-    } else {
-        
-    }
-    }
-    )
-}
-
-
-
-   
- 
-=======
 
         console.log(response)
-
+       
         var drinksContent = $("<div>");
         $("#drinks-content").append(drinksContent);
-        drinksContent.append("<h3>Drink Name: " + response.drinks[0].strDrink + "<h3>");
+        drinksContent.append("<h3>" + response.drinks[0].strDrink + "<h3>");
 
         drinksContent.append("<p>Ingredient 1: " + response.drinks[0].strIngredient1 + "<p>");
 
@@ -244,6 +174,9 @@ function displayContentDrink(input2) {
         var image = $("<img>").attr("src", imgURL); 
 
         drinksContent.append(image);
+
+        if (strIngredient3 === "null" || strIngredient4 === "null" || strIngredient5 === "null")  {
+            return("");
+        } 
     })
 }
->>>>>>> master
