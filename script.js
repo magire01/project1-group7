@@ -55,10 +55,10 @@ function buildRecipeCard(recipe) {
     }).then(function (response) {
 
         console.log(response)
-
+        
         var recipeCard = $("<card>");
 
-        var recipeTitle = $("<h3>").text(response.title);
+        var recipeTitle = $("<h2>").text(response.title);
 
         recipeCard.append(recipeTitle);
 
@@ -79,7 +79,6 @@ function buildRecipeCard(recipe) {
         recipeCard.append(servings);
 
         var link = $("<a>").text(response.sourceUrl);
-
         recipeCard.append(link);
 
         $("#recipe-content").append(recipeCard)
@@ -129,15 +128,11 @@ function displayCocktails(input) {
 
         for (var i = 0; i < 5; i++) {
 
-            var drinksBtn = $("<button class = newDrinks>");
+            var drinksBtn = $("<button class = newDrinks>").text(response.drinks[i].strDrink);
 
             console.log(response.drinks[i].strDrink)
 
             drinksBtn.attr("data-name", response.drinks[i].strDrink)
-
-            var drinkName = $("<p>").text(response.drinks[i].strDrink)
-
-            drinksBtn.append(drinkName)
 
             $("#search-results-drink").append(drinksBtn);
         }
