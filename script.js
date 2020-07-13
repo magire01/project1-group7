@@ -53,7 +53,7 @@ function buildRecipeCard(recipe) {
 
         console.log(response)
         
-        var recipeCard = $("<card>");
+        var recipeCard = $("<div class = 'card'>");
 
         var recipeTitle = $("<h2>").text(response.title);
 
@@ -77,6 +77,7 @@ function buildRecipeCard(recipe) {
 
         var link = $("<a>").text(response.sourceUrl);
         recipeCard.append(link);
+        link.attr("href", response.sourceUrl)
 
         $("#recipe-content").append(recipeCard)
 
@@ -148,9 +149,13 @@ function displayContentDrink(input2) {
 
         console.log(response)
 
-        var drinksContent = $("<div>");
+        var drinksContent = $("<div class = 'card'>");
         $("#drinks-content").append(drinksContent);
-        drinksContent.append("<h3>Drink Name: " + response.drinks[0].strDrink + "<h3>");
+      
+        drinksContent.append("<h2>Drink Name: " + response.drinks[0].strDrink + "<h2>");
+        var imgURL = response.drinks[0].strDrinkThumb;
+        var image = $("<img>").attr("src", imgURL); 
+        drinksContent.append(image);
 
         drinksContent.append("<p>Ingredient 1: " + response.drinks[0].strIngredient1 + "<p>");
 
@@ -164,10 +169,8 @@ function displayContentDrink(input2) {
 
         drinksContent.append("<p>Instructions: " + response.drinks[0].strInstructions + "<p>");
 
-        var imgURL = response.drinks[0].strDrinkThumb;
+        
 
-        var image = $("<img>").attr("src", imgURL); 
-
-        drinksContent.append(image);
+        
     })
 }
