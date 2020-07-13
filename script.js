@@ -2,42 +2,87 @@ $("#search-button-recipe").on("click", function (event) {
 
     event.preventDefault();
 
-    var ingredient1 = $("#search-bar-recipe").val();
+    var ingredient1 = $("#search-bar-recipe").val(); 
 
     displayToPage(ingredient1)
 })
 
-$(document).on("click", ".newRecipes", function (event){
+$(document).on("click", ".newRecipes", function (event) {
 
-    var recipe=$(this)[0].innerHTML;
+    $("#recipe-content").empty();
 
-    console.log(recipe)
+    var recipe = $(this).data("name")
 
+    console.log("This button was press: \n", recipe)
+
+    buildRecipeCard(recipe);
+
+    console.log("This button was press: \n",recipe)
 })
 
+function displayToPage(ingredient) {
 
+    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=cbd9ed14fce948619e1c479e46d3406e";
 
-function displayToPage(ingredient){
-    
-        var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=124a6ebafffa4ec9a8b75c752871ee40";
+    $.ajax({
+        url: apiURL,
+        method: "GET"
+    }).then(function (response) {
 
-        $.ajax({
-            url: apiURL,
-            method:"GET"
-        }).then(function(response) {
+        console.log(response);
 
-            console.log(response)
-            
-            for (i = 0; i < 5; i++){
+        for (i = 0; i < 5; i++) {
 
-                var recipeBtn = $("<button class = newRecipes>").text(response[i].title);
+            var recipeBtn = $("<button class = newRecipes>").text(response[i].title);
 
-                $("#search-results-recipe").append(recipeBtn)
+            recipeBtn.attr("data-name", response[i].id)
 
-            }
-        });
-        
-    } 
+            $("#search-results-recipe").append(recipeBtn)
+
+        }
+    });
+
+}
+
+function buildRecipeCard(recipe) {
+    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=cbd9ed14fce948619e1c479e46d3406e"
+    $.ajax({
+        url: apiUrl,
+        method: "GET"
+    }).then(function(response) {
+
+        console.log(response)
+
+        var recipeCard = $("<card>");
+
+        var recipeTitle = $("<h3>").text(response.title);
+
+        recipeCard.append(recipeTitle);
+
+        var recipeImage = $("<img>").attr("src", response.image);
+
+        recipeCard.append(recipeImage);
+
+        var recipePrepTime = $("<p>").text("Prep Time - " + response.preparationMinutes + " Minutes");
+
+        recipeCard.append(recipePrepTime);
+
+        var recipeCookTime = $("<p>").text("Cook Time - " + response.cookingMinutes + " Minutes");
+
+        recipeCard.append(recipeCookTime);
+
+        var servings = $("<p>").text("Servings - " + response.servings);
+
+        recipeCard.append(servings);
+
+        var link = $("<a>").text(response.sourceUrl);
+
+        recipeCard.append(link);
+
+        $("#recipe-content").append(recipeCard)
+
+    });
+}
 
 //CocktailDB Search
 //Click event for "#search-button-drinks"
@@ -92,9 +137,3 @@ function displayCocktails(input) {
         }
     })
 }
-
-
-
-
-
-
