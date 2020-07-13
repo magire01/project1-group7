@@ -56,7 +56,7 @@ function buildRecipeCard(recipe) {
 
         console.log(response)
         
-        var recipeCard = $("<card>");
+        var recipeCard = $("<div class = 'card'>");
 
         var recipeTitle = $("<h2>").text(response.title);
 
@@ -80,6 +80,7 @@ function buildRecipeCard(recipe) {
 
         var link = $("<a>").text(response.sourceUrl);
         recipeCard.append(link);
+        link.attr("href", response.sourceUrl)
 
         $("#recipe-content").append(recipeCard)
 
@@ -151,7 +152,7 @@ function displayContentDrink(input2) {
 
         console.log(response)
        
-        var drinksContent = $("<div>");
+        var drinksContent = $("<div class = 'card'>");
         $("#drinks-content").append(drinksContent);
         drinksContent.append("<h2>" + response.drinks[0].strDrink + "<h2>");
 
@@ -182,7 +183,6 @@ function displayContentDrink(input2) {
         }
 
         drinksContent.append("<p>Instructions: " + response.drinks[0].strInstructions + "<p>");
-
 
 
         
