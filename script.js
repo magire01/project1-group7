@@ -209,3 +209,40 @@ function displayRecipes(input) {
     }
   });
 }
+function randomFoodJoke() {
+  var jokeURL =
+    "https://api.spoonacular.com/food/jokes/random?apiKey=7b117b323fbe4805ae1814968944aca2";
+
+  $.ajax({
+    url: jokeURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+  });
+}
+
+function randomFoodTrivia() {
+  var triviaURL =
+    "https://api.spoonacular.com/food/trivia/random?apiKey=7b117b323fbe4805ae1814968944aca2";
+
+  $.ajax({
+    url: triviaURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+  });
+}
+randomFoodJoke();
+randomFoodTrivia();
+
+function randomFoodTrivia() {
+  var nutritionURL =
+    "https://api.spoonacular.com/recipes/{id}/nutritionWidget?apiKey=7b117b323fbe4805ae1814968944aca2";
+
+  $.ajax({
+    url: nutritionURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+  });
+}
