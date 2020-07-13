@@ -1,8 +1,10 @@
 $("#search-button-recipe").on("click", function (event) {
 
+    $("#recipe-content").empty();
+
     event.preventDefault();
 
-    var ingredient1 = $("#search-bar-recipe").val(); 
+    var ingredient1 = $("#search-bar-recipe").val();
 
     displayToPage(ingredient1)
 })
@@ -16,13 +18,11 @@ $(document).on("click", ".newRecipes", function (event) {
     console.log("This button was press: \n", recipe)
 
     buildRecipeCard(recipe);
-
-    console.log("This button was press: \n",recipe)
 })
 
 function displayToPage(ingredient) {
 
-    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=cbd9ed14fce948619e1c479e46d3406e";
+    var apiURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredient + "&number=5&apiKey=26ac3ffbd7f44fecab6782f58704ed4e";
 
     $.ajax({
         url: apiURL,
@@ -45,11 +45,11 @@ function displayToPage(ingredient) {
 }
 
 function buildRecipeCard(recipe) {
-    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=cbd9ed14fce948619e1c479e46d3406e"
+    var apiUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?&apiKey=26ac3ffbd7f44fecab6782f58704ed4e"
     $.ajax({
         url: apiUrl,
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
 
         console.log(response)
 
@@ -86,17 +86,20 @@ function buildRecipeCard(recipe) {
 
 //CocktailDB Search
 //Click event for "#search-button-drinks"
-$("#search-button-drinks").on("click", function(event) {
-     event.preventDefault();
-     //Empty the search results div so the next search will delete the previous search results
-     $("#search-results-drink").empty();
-     //variable for value of search bar
-     var ingredientDrinks = $("#search-bar-drinks").val();
-     //Call displayCocktails (AJAX function for cocktailDB) allowing value of search to be used in queryURL
-     displayCocktails(ingredientDrinks)
+$("#search-button-drinks").on("click", function (event) {
+    event.preventDefault();
+
+    $("#drinks-content").empty();
+    //Empty the search results div so the next search will delete the previous search results
+    $("#search-results-drink").empty();
+    //variable for value of search bar
+    var ingredientDrinks = $("#search-bar-drinks").val();
+    //Call displayCocktails (AJAX function for cocktailDB) allowing value of search to be used in queryURL
+    displayCocktails(ingredientDrinks)
 })
 
 //Click events for each generated "#search-results-drinks" button
+<<<<<<< HEAD
 
 $(document).on("click", ".newDrinks", function (event){
     //Variable for value of button text (in this case the recipe name pulled from API)
@@ -107,26 +110,34 @@ $(document).on("click", ".newDrinks", function (event){
   
     //Button Name test
     
+=======
+$(document).on("click", ".newDrinks", function (event) {
+    //Variable for value of button text (in this case the recipe name pulled from API)
+    $("#drinks-content").empty();
+
+    var drinkRecipe = $(this).data("name")
+    //Button Name test
+    console.log(drinkRecipe);
+
+    displayContentDrink(drinkRecipe);
+>>>>>>> master
 })
+
+
 
 //AJAX function for TheCocktailDB API (Input is dummy variable to pass "ingredientDrinks")
 function displayCocktails(input) {
     //URL link which will pass "input" AKA ingredientDrinks
     var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input}+&apiKey=1`
-    console.log(cocktailURL);
-    //Call to AJAX 
+
     $.ajax({
         url: cocktailURL,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
-        //If statement to change drinksLength variable, so the for loop that creates search results shows no more than 5 
-        if (response.drinks.length < 5) {
-            var drinksLength = response.drinks.length;
-        } else {
-            var drinksLength = 5;
-        }
 
+        console.log(response);
+
+<<<<<<< HEAD
         //Loop to create "#search-results-drink" buttons
         for (var j = 0; j < drinksLength; j++) {
            
@@ -151,10 +162,35 @@ function displayContentDrink (input2) {
     var cocktailURL2 = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input2}+&apiKey=1`
         console.log(cocktailURL2);
         //Call to AJAX 
+=======
+        for (var i = 0; i < 5; i++) {
+
+            var drinksBtn = $("<button class = newDrinks>");
+
+            console.log(response.drinks[i].strDrink)
+
+            drinksBtn.attr("data-name", response.drinks[i].strDrink)
+
+            var drinkName = $("<p>").text(response.drinks[i].strDrink)
+
+            drinksBtn.append(drinkName)
+
+            $("#search-results-drink").append(drinksBtn);
+        }
+    })
+}
+
+function displayContentDrink(input2) {
+
+    var cocktailURL2 = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input2}&apiKey=1`
+    console.log(cocktailURL2);
+    //Call to AJAX 
+>>>>>>> master
     $.ajax({
         url: cocktailURL2,
         method: "GET"
     }).then(function (response) {
+<<<<<<< HEAD
         console.log(response)
     var drinksContent = $("<div>");
     $("#drinks-content").append(drinksContent);
@@ -183,3 +219,31 @@ function displayContentDrink (input2) {
 
    
  
+=======
+
+        console.log(response)
+
+        var drinksContent = $("<div>");
+        $("#drinks-content").append(drinksContent);
+        drinksContent.append("<h3>Drink Name: " + response.drinks[0].strDrink + "<h3>");
+
+        drinksContent.append("<p>Ingredient 1: " + response.drinks[0].strIngredient1 + "<p>");
+
+        drinksContent.append("<p>Ingredient 2: " + response.drinks[0].strIngredient2 + "<p>");
+
+        drinksContent.append("<p>Ingredient 3: " + response.drinks[0].strIngredient3 + "<p>");
+
+        drinksContent.append("<p>Ingredient 4: " + response.drinks[0].strIngredient4 + "<p>");
+
+        drinksContent.append("<p>Ingredient 5: " + response.drinks[0].strIngredient5 + "<p>"); 
+
+        drinksContent.append("<p>Instructions: " + response.drinks[0].strInstructions + "<p>");
+
+        var imgURL = response.drinks[0].strDrinkThumb;
+
+        var image = $("<img>").attr("src", imgURL); 
+
+        drinksContent.append(image);
+    })
+}
+>>>>>>> master
