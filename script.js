@@ -1,8 +1,8 @@
 $("#search-button-recipe").on("click", function (event) {
 
-    $("#recipe-content").empty();
-
     event.preventDefault();
+
+    $("#search-results-recipe").empty();
 
     var ingredient1 = $("#search-bar-recipe").val();
 
@@ -37,7 +37,7 @@ function displayToPage(ingredient) {
 
             recipeBtn.attr("data-name", response[i].id)
 
-            $("#search-results-recipe").append(recipeBtn)
+            $("#search-results-recipe").append(recipeBtn);
 
         }
     });
