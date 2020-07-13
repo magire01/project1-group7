@@ -195,6 +195,8 @@ function randomFoodJoke() {
     method: "GET",
   }).then(function (response) {
     console.log("Have you heard? ....." + response.text);
+    $("#food-joke").append("<h4 class='Title'>Random Food Joke</h4>")
+    $("#food-joke").append("<p class='HAHA'> Have you heard? ....." + response.text + "</p>")
   });
 }
 
@@ -207,6 +209,8 @@ function randomFoodTrivia() {
     method: "GET",
   }).then(function (response) {
     console.log("Random Fact :" + response.text);
+    $("#food-trivia").append("<h4 class='Title'>Random Fun Fact</h4>")
+    $("#food-trivia").append("<p class='WOW'> Did You Know? ....." + response.text + "</p>")
   });
 }
 randomFoodJoke();
