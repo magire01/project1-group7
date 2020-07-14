@@ -1,6 +1,7 @@
 # project1-group7
 
 This app allows the user to search for Recipes based on ingredients they want to cook with, and search for cocktails based on what they already have.  This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery and Ajax.
+THe app also uses UL- kit CSS framework.
 
 ## User Story
 
